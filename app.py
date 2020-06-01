@@ -2,7 +2,7 @@ import os
 
 from cs50 import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
-from flask_session import Session
+# from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -32,7 +32,8 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
 os.environ['API_KEY'] = "pk_e34b8d451f6e4b51a157f727315097f7"
-Session(app)
+# Session(app)
+app.secret_key='secret123'
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
@@ -190,6 +191,7 @@ def register():
 
         db.execute("INSERT INTO users(username, hash) VALUES(?, ?)", (username, generate_password_hash(password)))
         return redirect('/login')
+
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
