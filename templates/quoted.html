@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quated
+{% endblock %}
+
+{% block main %}
+    <p>
+        A share of {{ lookup['name'] }} ({{ lookup['symbol'] }}) costs ${{ lookup['price'] }}.
+    </p>
+{% endblock %}
